@@ -8,7 +8,7 @@ How to upload and modify files:
    --> Settings
    --> SSH and GPG keys
    --> New SSH Key (green button)
-   --> Add any title (E.g. <UserName> Machine) - if having more than one computer each will need a different access key
+   --> Add any title (E.g. UserName_machine name) - if having more than one computer each will need a different access key
    --> Key type Authentication Key
    --> Key: paste the value from step 3 above
    --> Click Add SSH Key
@@ -20,7 +20,7 @@ How to upload and modify files:
 9. Copy all files\folders to be uploaded
 10. Back to the git bash, type:
     --> **git add .**
-    --> **git commit -m "<any description E.g. first upload>"**
+    --> **git commit -m "any description E.g. first upload"**
     --> **git push**
 
 **whenever adding new files repeat step 10**
