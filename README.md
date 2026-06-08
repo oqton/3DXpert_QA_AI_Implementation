@@ -14,7 +14,7 @@ How to upload and modify files:
    --> Click Add SSH Key
 5. Create a local (empty) folder where all resources (yours and others) will be located (E.g. C:\GitHub\3DXpert_AI)
 6. Open git bash
-7. Navigate to the folder (use / and not \\ with a leading /c) E.g. **cd \c\GitHub\3DXpert_AI**
+7. Navigate to the folder (use / and not \\ with a leading /c) E.g. **cd /c/GitHub/3DXpert_AI**
 8. type **git clone git@github.com:oqton/3DXpert_QA_AI_Implementation.git .** (include the . at the end)
     after this step, all other sources will be downloaded to the machine.
 9. Copy all files\folders to be uploaded
