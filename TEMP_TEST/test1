@@ -1,0 +1,67 @@
+using System;
+using System.Data;
+using System.IO;
+using System.Linq;
+
+public class CsvConverter
+{
+    public static DataTable ConvertCsvToDataTable(string filePath, bool hasHeaderRow = true)
+    {
+        DataTable dataTable = new DataTable();
+        
+        try
+        {
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string[] headers = null;
+                int lineNumber = 0;
+                string line;
+                
+                while ((line = reader.ReadLine()) != null)
+                {
+                    lineNumber++;
+                    
+                    if (string.IsNullOrWhiteSpace(line))
+                        continue;
+                    
+                    string[] values = line.Split(',');
+                    
+                    // Process header row
+                    if (lineNumber == 1 && hasHeaderRow)
+                    {
+                        headers = values;
+                        foreach (string header in headers)
+                        {
+                            dataTable.Columns.Add(header.Trim());
+                        }
+                    }
+                    // check this
+                    else
+                    {
+                        // If no header row, create default columns on first data row
+                        if (dataTable.Columns.Count == 0)
+                        {
+                            for (int i = 0; i < values.Length; i++)
+                            {
+                                dataTable.Columns.Add($"Column{i + 1}");
+                            }
+                        }
+                        
+                        DataRow row = dataTable.NewRow();
+                        for (int i = 0; i < values.Length; i++)
+                        {
+                            row[i] = values[i].Trim();
+                        }
+                        dataTable.Rows.Add(row);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error reading CSV file: {ex.Message}", ex);
+        }
+        
+        return dataTable;
+    }
+}
