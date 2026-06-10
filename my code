@@ -1,0 +1,46 @@
+using System;
+using System.Data;
+using System.IO;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        var table = new DataTable();
+        table.Columns.Add("Id", typeof(int));
+        table.Columns.Add("Name", typeof(string));
+        table.Rows.Add(1, "Alice");
+        table.Rows.Add(2, "Bob");
+
+        CreateCsvFromDataTable(table, @"c:\AutoTests\qa_ai\my_code.csv");
+    }
+
+    static void CreateCsvFromDataTable(DataTable table, string filePath)
+    {
+        using (var writer = new StreamWriter(filePath))
+        {
+            var columnNames = table.Columns.Cast<DataColumn>().Select(c => EscapeCsvField(c.ColumnName));
+            writer.WriteLine(string.Join(",", columnNames));
+
+            foreach (DataRow row in table.Rows)
+            {
+                var fields = table.Columns.Cast<DataColumn>().Select(c => EscapeCsvField(row[c]?.ToString() ?? string.Empty));
+                writer.WriteLine(string.Join(",", fields));
+            }
+        }
+    }
+
+    static string EscapeCsvField(string field)
+    {
+        if (string.IsNullOrEmpty(field))
+            return string.Empty;
+
+        if (field.Contains('"') || field.Contains(',') || field.Contains('\n') || field.Contains('\r'))
+        {
+            return "\"" + field.Replace("\"", "\"\"") + "\"";
+        }
+
+        return field;
+    }
+}
