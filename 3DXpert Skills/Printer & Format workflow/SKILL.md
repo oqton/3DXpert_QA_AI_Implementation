@@ -3,7 +3,7 @@ name: 3dxpert-printer-format-expert
 description: "Authoritative knowledge base for 3DXpert printer integrations, output formats, SDK workflows, OEM processing, Slicer Viewer behavior, validation coverage and MeltControl support. Use when answering questions about: which file format a specific printer outputs, who owns slicing/hatching/laser assignment for a given workflow, whether MeltControl is supported, how FileNaming.xml behaves, Slicer Viewer display behavior per workflow, automation test coverage, and lifecycle status of any integration. Source of truth for Aconity, Renishaw, EOS, 3D Systems, Nikon SLM, Trumpf, Concept Laser, Additive Industries, DMG Mori, Farsoon, Eplus 3D, HP, and more."
 metadata:
   author: lior.goldshtok@oqton.com
-  version: '1.0'
+  version: '1.1'
 ---
 
 # 3DXpert Printer & Format Expert
